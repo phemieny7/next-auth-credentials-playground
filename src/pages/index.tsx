@@ -14,6 +14,7 @@ const IndexPage = () => {
       {!session && <>Not signed in</>}
       {session && (
         <>
+          {/* @ts-ignore */}
           Signed in as {session.user.username} <br />
           <button onClick={() => signOut()}>Sign out</button>
         </>
