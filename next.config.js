@@ -19,7 +19,8 @@ module.exports = {
       'sql.js',
       'typeorm-aurora-data-api-driver',
       'ioredis',
-      'better-sqlite3'
+      'better-sqlite3',
+      '@sap/hana-client'
     )
     return config
   },
