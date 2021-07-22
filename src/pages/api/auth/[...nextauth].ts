@@ -3,6 +3,8 @@ import Providers from 'next-auth/providers'
 
 import db from '../../../lib/db'
 
+console.log(process.env.NEXTAUTH_URL)
+
 export default NextAuth({
   providers: [
     Providers.Credentials({
