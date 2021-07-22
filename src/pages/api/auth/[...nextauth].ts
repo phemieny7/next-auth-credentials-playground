@@ -1,12 +1,7 @@
-process.env.NEXTAUTH_URL =
-  process.env.NEXTAUTH_URL || 'https://master.d1kfwx6bf772p3.amplifyapp.com'
-
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
 import db from '../../../lib/db'
-
-// console.log(process.env.NEXTAUTH_URL)
 
 export default NextAuth({
   providers: [
