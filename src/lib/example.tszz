@@ -1,0 +1,86 @@
+// import NextAuth from 'next-auth'
+// import Providers from 'next-auth/providers'
+
+// import gql from 'graphql-tag'
+
+// import hashPassword from '../../../lib/hash-password'
+// import { initLegacyApollo } from '../../../lib/apollo'
+// import { pick, getAbsoluteURL } from '../../../lib/helpers'
+// import { initSentry } from '../../../lib/sentry'
+
+// initSentry()
+// const apollo = initLegacyApollo()
+// const options = {
+//   pages: {
+//     error: getAbsoluteURL('/login'),
+//   },
+//   jwt: {
+//     signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
+//   },
+//   callbacks: {
+//     signIn: async function signIn(user, account) {
+//       if (account.id === 'credentials' && user.token) {
+//         const result = await apollo.query({
+//           query: Queries.currentUser,
+//           fetchPolicy: 'no-cache',
+//           context: {
+//             token: user.token,
+//           },
+//         })
+//         if (result && result.data && result.data.currentUser) {
+//           // eslint-disable-next-line
+//           user.profile = result.data.currentUser.profile
+//           // eslint-disable-next-line
+//           user.roles = result.data.currentUser.roles
+//         }
+//         return true
+//       }
+//       return false
+//     },
+//     jwt: async function jwt(token, user) {
+//       if (user) {
+//         // eslint-disable-next-line
+//         token = {
+//           accessToken: user.token,
+//           user: pick(user, ['id', 'email', 'profile', 'roles']),
+//         }
+//       }
+//       return token
+//     },
+//     session: async function session(s, token) {
+//       return pick(token, 'accessToken', 'user')
+//     },
+//   },
+//   providers: [
+//     Providers.Credentials({
+//       name: 'PSA',
+//       authorize: async ({ email, password }) => {
+//         const result = await apollo.mutate({
+//           mutation: gql`
+//             mutation login($username: String, $email: String, $password: HashedPassword!) {
+//               loginWithPassword(username: $username, email: $email, password: $password) {
+//                 id
+//                 token
+//                 tokenExpires
+//               }
+//             }
+//           `,
+//           variables: {
+//             username: email,
+//             email,
+//             password: hashPassword(password),
+//           },
+//         })
+//         const { id, token, tokenExpires } = result.data.loginWithPassword
+//         return {
+//           id,
+//           token,
+//           tokenExpires,
+//           email,
+//         }
+//       },
+//     }),
+//   ],
+// }
+// const Auth = (req, res) => NextAuth(req, res, options)
+// export default Auth
