@@ -16,7 +16,8 @@ module.exports = {
       'redis',
       'sqlite3',
       'sql.js',
-      'typeorm-aurora-data-api-driver'
+      'typeorm-aurora-data-api-driver',
+      'ioredis'
     )
     return config
   },
